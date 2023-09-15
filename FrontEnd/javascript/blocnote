@@ -1,0 +1,91 @@
+
+    ///////// classes liées au mode utilisateur conecté
+  let editionDiv = document.getElementById("edition");
+  let changementsBaliseP = document.getElementById("changements");
+ 
+  ////////// verif de la présence du token
+   let getToken = window.sessionStorage.getItem("userToken");
+     console.log(getToken);
+ 
+   ///////// lien avec formulaire html + declenchement de la fonction "loginUser" au clic du bouton de connexion
+ const formLogin = document.getElementById("loginForm");
+ formLogin.addEventListener("submit", function (event) {
+ 
+         event.preventDefault();
+         
+         
+        async function loginUser () {
+             const fetchPromise = await fetch("http://localhost:5678/api/users/login", {
+                 method:"POST",
+                 headers: {
+                     "Accept": "application/json",
+                     "Content-Type" : "application/json"
+                 },
+             body: JSON.stringify({
+                 email: userEmail,
+                 password: userPassword, 
+             }),
+         });
+         console.log(fetchPromise);
+ 
+         if (fetchPromise.ok === true) {
+             const reponse = await fetchPromise.json();
+             const token = reponse.token;
+             localStorage.setItem("userToken", token);
+             window.location.href = "../html/index.html";
+ ////////// a voir de remplacer add/remove class par toggle
+             editionDiv.classList.add(".edition-mode");
+             changementsBaliseP.classList.add(".changement-text")
+ 
+             console.log(reponse);
+             console.log(token);
+             
+             ///////////ajouter le texte logout 
+         } else {
+             alert("Erreur dans l'identifiant ou le mot de passe");
+             throw new Error("Erreur dans l'identifiant ou le mot de passe");
+             console.log(Error)
+         
+         }};
+ 
+         loginUser()
+ 
+     });
+ 
+ 
+     const logoutToken = document.getElementById("logout");
+     logoutToken.addEventListener("click", function (event) {
+ 
+         event.preventDefault();
+         window.localStorage.removeItem("userToken");
+         editionDiv.classList.remove(".edition-mode");
+         changementsBaliseP.classList.remove(".changement-text")
+     });
+ 
+ 
+ //--------------------------------------------------------------------------------------------------
+ //email: sophie.bluel@test.tld
+ //password: S0phie 
+ 
+ //   if (token === null) {
+ // //definition de la requête :
+ 
+ // //rajouter une condition pour data.token qui match avec le mdp et l'identifiant
+ // .then ((body) => {
+ //     if (body.token !== undefined) {
+ // // si token absent, le placer
+ //     window.sessionStorage.setItem("token", body.token);
+ //     window.location.href = "../html/index.html";    
+      
+ //     }
+ //     else {
+ //         document.getElementById("erreur-saisie-form")
+ //         .innerHTML = data.message
+ //     }
+ // })
+ // .catch((error) => {
+ //     console.log(error);
+ // })
+ // }
+ 
+ 

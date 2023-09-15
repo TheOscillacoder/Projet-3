@@ -9,18 +9,34 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="../assets/style.css">
-	<script src ="../javascript/projets.js" defer> </script>	
+	<script src="../javascript/projets.js" defer></script>
+	<script src="../javascript/login.js" defer></script>
+	<script src="../javascript/modal.js" defer></script>	
 </head>
 <body>
-<header>
-	<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
-	<nav>
+	
+<header>	
+	
+	<!-- id="connected"> ASSOCIE A LA DIV "edition" DU HEADER lors du login de l'utilisateur -->
+	 <div class="edition-mode">
+		<img src="../assets/icons/Vector.svg" class="logo-edition">
+		<p class="text-edition">Mode édition</p>
+		<div class ="changement-edition">
+			 <p class="changement-text">Publier les changements</p>
+			 <!-- id="textChange"></p> class="changement-text">publier les changements</p> ASSOCIE A LA BALISE p "changements" 
+			DU HEADER lors du login de l'utilisateur -->
+		</div>
+	</div>
+	<!-- id="navIndex"-->
+	<nav class="nav-index">
+	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<ul>
 			<li>projets</li>
 			<li>contact</li>
-			<a href="login.html"> <li>login</li> </a>
+			<a href="login.html"> <li class="login">login</li> </a>
+			<li id ="logout" class="logout">logout</li>
 			
-			<li><img src="../assets/icons/instagram.png" alt="Instagram"></li>
+			<li><img src="../assets/icons/instagram.png" alt="Instagram" class="insta-logo"></li>
 		</ul>
 	</nav>
 </header>
@@ -37,14 +53,87 @@
 		</article>
 	</section>
 	<section id="portfolio">
+		<div class="projets-titre">
 		<h2>Mes Projets</h2>
-		<div class="gallery">
-			
+		<a href="#modal1">modifier<img src="../assets/icons/Vector.svg" class="logo-edition">
+		</a> 
+		</div>
+		<div class="category-filters">
 		<!--généré dynamiquement en JS-->
-		
-			
+		<div class="gallery">			
+		<!--généré dynamiquement en JS-->			
+		</div>
 		</div>
 	</section>
+	<!--attribut "aria-modal" à switcher en true lorsque la modale sera active pour rendre uniquement la modale accessible -->
+	<aside id="modal1" class="modal" aria-hidden="true" role="dialog" style="display: none">  <!-- style="display:none"> -->
+		<div class="modal-wrapper js-modal-stop">
+			<div class="modal-top-logo">
+				<img src="../assets/icons/arrow-left.svg">
+				<button class="js-modal-close">
+					<i class="fa-solid fa-xmark"></i>  
+				</button>
+			</div>
+			<p class="modal-title">Ajout photo</p>
+			<div class="modal-content">
+				<div class="modal-rectangle js-modal-stop">
+					<img src="../assets/icons/picture-svgrepo-com 1.svg">
+						<label class="label-modal-button">
+							 <input type="file" accept="image/jpeg, image/png" class="js-modal-stop">  
+							<span>+ Ajouter photo</span>
+						</label>	
+					<p>jpg, png : 4mo max</p>
+				</div>
+				<form action="#" method="post" class="form-modal">
+					<label for="titre">Titre</label>
+					<input type="text" name="titre" id="titre">
+					<label for="categorie">Catégorie</label>
+					<select name="categorie" id="categorie">
+						<!--NOM DES CATEGORIES A REMPLACER PAR LE FETCH DES CATEGORIES ?-->
+						<option value=""></option>
+						<option value="Objets">Objets</option>
+						<option value="Appartements">Appartements</option>
+						<option value="Hotels & restaurants">Hotels & restaurants</option>
+					</select>
+				</form>
+			</div>
+				<input type="button" value="Valider" class="bouton-modal-valider">				
+		</div>
+	</aside>
+	<!--MODALE VERSION 2 AVEC LES PROJETS EN MINIATURE ET AJOUT/RETRAIT-->
+
+
+	<!-- <aside id="modal2" class="modal" aria-hidden="true" role="dialog" style="display:none">  <!-- style="display:none"> -->
+		<!-- <div class="modal-wrapper js-modal-stop">
+			<div class="modal-top-logo">
+				<img src="../assets/icons/arrow-left.svg">
+				<button class="js-modal-close">
+					<i class="fa-solid fa-xmark"></i>  
+				</button>
+			</div>
+			<p class="modal-title">Ajout photo</p>
+			<div class="modal-content">
+				<div class="modal-rectangle js-modal-stop">
+					<img src="../assets/icons/picture-svgrepo-com 1.svg">
+						<input type="button" value=" + Ajouter photo" class="bouton-ajouter-photo" class="js-modal-stop">
+					<p>jpg, png : 4mo max</p>
+				</div>
+				<form action="#" method="post" class="form-modal">
+					<label for="titre">Titre</label>
+					<input type="text" name="titre" id="titre">
+					<label for="categorie">Catégorie</label>
+					<select name="categorie" id="categorie">
+						<option value=""></option>
+						<option value="Objets">Objets</option>
+						<option value="Appartements">Appartements</option>
+						<option value="Hotels & restaurants">Hotels & restaurants</option>
+					</select>
+				</form>
+			</div>
+				<input type="button" value="Valider" class="bouton-modal-valider">				
+		</div>
+	</aside> -->
+	
 	<section id="contact">
 		<h2>Contact</h2>
 		<p>Vous avez un projet ? Discutons-en !</p>
@@ -67,5 +156,6 @@
 		</ul>
 	</nav>
 </footer>
+
 </body>
 </html>
