@@ -1,9 +1,9 @@
 
 const formLogin = document.querySelector(".login-form");
 
-const editionDiv = document.querySelector(".edition-mode");
-const changementsBaliseP = document.querySelector(".changement-edition");
-const navClassEdition = document.querySelector(".nav-index");
+// const editionDiv = document.querySelector(".edition-mode");
+// const changementsBaliseP = document.querySelector(".changement-edition");
+// const navClassEdition = document.querySelector(".nav-index");
 
 async function loginSubmit(event) {
     event.preventDefault();
@@ -35,6 +35,7 @@ body: JSON.stringify({
     if (response.ok) {
 
     // Ajouter le display des classes en mode edition
+
     // editionDiv.classList.(".edition-mode");
     // changementsBaliseP.classList.(".changement-text");
     // navClassEdition.classList.(".nav-index");

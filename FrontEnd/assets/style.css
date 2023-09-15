@@ -32,7 +32,7 @@ footer, header, hgroup, menu, nav {
 	display: block;
 }
 
-div, p {
+div, p, section {
 	display: unset;
 }
  
@@ -77,7 +77,6 @@ header {
 
 section {
 	margin: 50px 0;
-	display: inherit;
 }
 
 h1 {
@@ -158,9 +157,6 @@ li:hover {
 	margin-bottom: 0.5em;
 }
 
-#portfolio {
-	justify-content: center;
-}
 
 #portfolio h2 {
 	text-align: center;
@@ -247,28 +243,28 @@ flex-shrink: 0;
 
 .projets-titre {
 	display: flex;
-	flex-direction: row;
 	gap: 30px;
-}
-
-.category-filters {
-	justify-items: center;
-}
-
-.category-filters > {
-	display: flex;
-	flex-direction: row;
-
 	align-items: center;
-	
+	justify-content: center;
 }
+
+.projets-titre h2 {
+	margin: 0px;
+}
+
+ .category-filters {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;	
+} 
 
 .category-filters button {
+	
 	width: fit-content;
 	min-width: 100px;
 
 	height: 37px;
-	flex-shrink: 0;
 
 	border-radius: 60px;
 	border: 1px solid #1D6154;
@@ -286,8 +282,9 @@ flex-shrink: 0;
 	margin-bottom: 51px;
 }
 
-.category-filters :hover button {
-	background: #1D6154;
+.category-filters button:focus {
+	background-color: #1D6154;
+	color: white;
 }
 
 
@@ -312,9 +309,6 @@ flex-shrink: 0;
 logo-edition {
 	width: 15.58px;
 	height: 15.58px;
-	flex-shrink: 0;
-
-	fill: #FFF;;
 }
 
 .text-edition {
@@ -330,8 +324,10 @@ logo-edition {
 
 .changement-edition {
 	width: 216px;
-	height: 38px;
-	flex-shrink: 0;
+	height: 30px;
+
+	padding-top: 13px;
+
 	text-align: center;
 	justify-content: center;
 
@@ -339,10 +335,9 @@ logo-edition {
 	background: #FFF;
 }
 
-changement-text {
+.changement-text {
 	color: #000;
-	display: inline;
-	justify-content: center;
+	align-items: center;
 	font-family: Work Sans;
 
 	font-size: 14px;
@@ -493,6 +488,11 @@ changement-text {
 }
 
 
+.modal-content label input[type="file"] {
+	display: none;
+}
+
+
 .modal-rectangle {
 	display: flex;
 	flex-direction: column;
@@ -518,9 +518,6 @@ changement-text {
 	padding-top: 7px;
 }
 
-.label-modal-button label input[type="file"] {
-	display: none;
-}
 
 
 .label-modal-button span {

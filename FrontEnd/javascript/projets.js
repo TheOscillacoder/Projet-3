@@ -46,7 +46,7 @@ genererProjets();
  async function categorieFiltre () {
      const reponse = await fetch ("http://localhost:5678/api/categories");
     let projetCategorie = await reponse.json();
-
+//ajouter une div qui contient uniquement les boutons 
         const filterGroup = document.querySelector(".category-filters");
         const ProjetGroup = document.querySelector(".gallery");
 
