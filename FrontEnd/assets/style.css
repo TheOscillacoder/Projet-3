@@ -32,7 +32,7 @@ footer, header, hgroup, menu, nav {
 	display: block;
 }
 
-div, p, section {
+div, section {
 	display: unset;
 }
  
@@ -252,11 +252,10 @@ flex-shrink: 0;
 	margin: 0px;
 }
 
- .category-filters {
+.filters  {
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;	
+	flex-direction: row;
+	justify-content: center;	
 } 
 
 .category-filters button {
@@ -278,8 +277,8 @@ flex-shrink: 0;
 	font-style: normal;
 	font-weight: 700;
 	line-height: normal;
-
-	margin-bottom: 51px;
+	
+	margin: 0px 10px 51px 10px;
 }
 
 .category-filters button:focus {
@@ -422,6 +421,13 @@ logo-edition {
 	text-align: center;
 }
 
+.error-message {
+	justify-content: center;
+	color: red;
+	font-family: Work Sans;
+	font-size: 20px;
+}
+
 
 
 /******************MODALE***********************/
@@ -520,14 +526,20 @@ logo-edition {
 
 
 
-.label-modal-button span {
+.label-modal-button {
 	color: #306685;
 	text-align: center;
+
 	font-family: Work Sans;
 	font-size: 14px;
 	font-style: normal;
 	font-weight: 500;
 	line-height: normal;
+
+	width: 173px;
+	height: 36px;
+	border-radius: 50px;
+	background: #CBD6DC;
 }
 
 /* 
