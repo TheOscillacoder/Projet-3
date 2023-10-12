@@ -84,4 +84,4 @@ const stopPropagation = function (event) {
  })
 
 
-document.querySelector(".modal").addEventListener("click", openModal)
+document.querySelector(".modal").addEventListener("click", openModal);

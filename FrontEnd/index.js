@@ -64,28 +64,25 @@ genererProjets();
         
 
        filterSoloAll.addEventListener(
-        "click", function () {
+        "click",  () => {
             genererProjets(0)
         }
-        )
-            
+        )          
 
-     
         // générer un bouton par catégorie avec leur nom respectif
 
          for (let i = 0; i < projetCategorie.length; i++) {
       const filterSolo = document.createElement("button");
-      filterSolo.innerText = projetCategorie[i].name;
-    
+      filterSolo.innerText = projetCategorie[i].name;    
 
     // filterGroup.insertBefore(filterSolo, ProjetGroup);
-//    filterGroup.insertBefore(filterSolo, filterDiv);
+    //filterGroup.insertBefore(filterSolo, filterDiv);
    
    
    filterGroup.appendChild(filterSolo);
 
       filterSolo.addEventListener(
-        "click", function () {
+        "click", () => {
             genererProjets(projetCategorie[i].id);
         }
       )
@@ -94,9 +91,6 @@ genererProjets();
          }        
 
      categorieFiltre();
-
-
-
 
 function nettoyage(element) {
     while (element.firstChild) {

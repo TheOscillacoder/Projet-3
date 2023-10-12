@@ -18,8 +18,8 @@
 			<ul>
 				<a href ="index.html"> <li>projets</li></a>
 				<a href="index.html"> <li>contact</li> </a>
-				<li>login</li>
-				<li id="logout">logout</li>				
+				 <li class="login"><strong>login</strong></li> 
+				<li class="logout">logout</li>				
 				<li><img src="assets/icons/instagram.png" alt="Instagram" class="insta-logo"></li>
 			</ul>
 		</nav>
@@ -27,14 +27,15 @@
 	<main>
 	<section id="section-login">
 		<h1 class="login-title">Log in</h1>
-			 <form class="login-form" method="POST" id="formIds">				
+			 
+			 <form action="#" method="POST" id="formIds" class="login-form" >				
 				<label for="email">E-mail</label>
-					<input type="email" name="email" id="email">					
+					<input id="email" type="email" name="email" >					
 				<label for="password">Mot de passe</label>
-					<input type="password" name="password" id="password">				
-				<input type="submit" value="Se connecter">
+					<input id="password" type="password" name="password">				
+				<input id="formSubmit" type="submit" value="Se connecter">
 				<p class="error-message"></p>
-		</form>
+			</form>
 		<a href="" class="mdp-oubli">Mot de passe oublié</a>
 			
 		</div>

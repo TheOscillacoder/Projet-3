@@ -9,7 +9,7 @@ a, abbr, acronym, address, big, cite, code,
 del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
 b, u, i, center,
-dl, dt, dd, ol, ul, li,
+dl, dt, dd, ol, ul,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, embed,
@@ -31,11 +31,11 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav {
 	display: block;
 }
-
+/* 
 div, section {
 	display: unset;
 }
- 
+  */
 body {
 
 	line-height: 1;
@@ -289,10 +289,12 @@ flex-shrink: 0;
 
 /******************MODE UTILISATEUR CONNECTE***********************/
 #header-login {
- margin: 50px
-
+  margin: 50px
 }
+
+
 .edition-mode {
+	visibility: hidden;
 	width: 100%;
 	height: 59px;
 	flex-shrink: 0;
@@ -305,9 +307,11 @@ flex-shrink: 0;
 	gap: 15px;
 }
 
-logo-edition {
+.logo-edition {
 	width: 15.58px;
 	height: 15.58px;
+	color: #FFF;
+	border: 1px solid #FFF;
 }
 
 .text-edition {
@@ -345,16 +349,12 @@ logo-edition {
 	line-height: normal;
 }
 
-/****coté page index.html dans le menu****/
-
-/* .login {
-
-} */
-
-#logout {
+/****dans le menu****/
+.logout {
 	display: none;
 }
 	/******************PAGE LOGIN***********************/
+
 
 .login-header {
 	display: flex;
@@ -362,8 +362,6 @@ logo-edition {
 	justify-content: space-between;
 	
 }
-
-
 
 #body-login {
 	height: 1024px;

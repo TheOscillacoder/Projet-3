@@ -10,32 +10,28 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="assets/style.css">
 	<script src="index.js" defer></script>
-	<script src="login.js" defer></script>
 	<script src="modal.js" defer></script>	
+	<script src="login.js" defer></script>
 </head>
 <body>
 	
-<header>	
-	
-	<!-- id="connected"> ASSOCIE A LA DIV "edition" DU HEADER lors du login de l'utilisateur -->
-	 <div class="edition-mode">
+<header>
+	<!-- class="edition-mode" a AJOUTER lors du mode user connecté  -->
+	<div class="edition-mode">
 		<img src="assets/icons/Vector.svg" class="logo-edition">
 		<p class="text-edition">Mode édition</p>
 		<div class ="changement-edition">
 			 <p class="changement-text">Publier les changements</p>
-			 <!-- id="textChange"></p> class="changement-text">publier les changements</p> ASSOCIE A LA BALISE p "changements" 
-			DU HEADER lors du login de l'utilisateur -->
 		</div>
 	</div>
-	<!-- id="navIndex"-->
 	<nav class="nav-index">
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<ul>
 			<li><strong>projets</strong></li>
 			<a href="#contact"> <li>contact</li> </a>
-			<a href="login.html"> <li class="login">login</li> </a>
-			<li id ="logout" class="logout">logout</li>
-			
+			<a href="login.html"> <li class="login">login</li></a>
+			<li class="logout">logout</li>
+			<!--"login à RETIRER lors du mode user connecté  -->
 			<li><img src="assets/icons/instagram.png" alt="Instagram" class="insta-logo"></li>
 		</ul>
 	</nav>
@@ -106,7 +102,7 @@
 	<!--MODALE VERSION 2 AVEC LES PROJETS EN MINIATURE ET AJOUT/RETRAIT-->
 
 
-	<!-- <aside id="modal2" class="modal" aria-hidden="true" role="dialog" style="display:none">  <!-- style="display:none"> -->
+	<!-- <aside id="modal2" class="modal" aria-hidden="true" role="dialog" style="display:none">  style="display:none"> -->
 		<!-- <div class="modal-wrapper js-modal-stop">
 			<div class="modal-top-logo">
 				<img src="assets/icons/arrow-left.svg">
@@ -159,6 +155,5 @@
 		</ul>
 	</nav>
 </footer>
-
 </body>
 </html>
