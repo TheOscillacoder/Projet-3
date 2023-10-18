@@ -1,8 +1,14 @@
-
+/////// a rajouter le display none de la section de filtres une fois le mode user connecté
 
 const editionDiv = document.querySelector(".edition-mode");
 const logoutNav = document.querySelector(".logout");
 const loginNav = document.querySelector(".login")
+
+// infos token sous forme d'objet
+let  sessionUserInfo = {
+    key : "userToken", 
+    value : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MzkyNDc3NywiZXhwIjoxNjk0MDExMTc3fQ.n4Dx8KrQVIonAm6tvYYl4L6k3MIhihM-CVNMk5CC5iU",
+}
 
 async function loginSubmit(event) {
     event.preventDefault();
@@ -37,12 +43,23 @@ body: JSON.stringify({
 
     console.log(response);
 
-// Ajout/modification du display des classes en mode edition    
-    editionDiv.style.visibility ="visible";
-    logoutNav.style.display ="visible";
-    loginNav.style.display ="none";    
+// Ajout/modification du display des classes en mode edition 
 
-    return response.json();     
+if (logoutNav)  {
+    logoutNav.style.display ="unset";
+}  
+ if (loginNav) {
+    loginNav.style.display ="none"
+ }   
+
+ /////// retour vers page d'accueil en mode connecté
+//  window.location.href = "index.html";
+
+ if (editionDiv) {   
+    editionDiv.style.visibility ="visible";
+}
+
+return response.json();  
 
 ////////// Comportement en cas de champs vide : /////////
     } else if (response.status !== 200 && (!userEmail || !userPassword)) {
@@ -54,14 +71,16 @@ body: JSON.stringify({
 
         document.querySelector(".error-message").innerHTML = " ! Erreur dans l'identifiant ou le mot de passe !"
      }
-})
 
-.then ((userInfo) => {    
-    let getToken = window.localStorage.getItem("sessionUserInfo");   
+    })
+
+.then ((userInfo) => {  
+    
+    let getToken = window.localStorage.getItem(sessionUserInfo);   
 
     if (getToken === null) {
-      window.localStorage.setItem("sessionUserInfo");
-      console.log (getToken);
+        console.log ("Token manquant, rajout au local storage");
+        window.localStorage.setItem(sessionUserInfo.key, sessionUserInfo.value);     
 
     } else (
         console.log("Token déjà présent")
@@ -69,22 +88,30 @@ body: JSON.stringify({
      console.log(userInfo);
         
     })
-    //  window.location.href = "index.html";
+
 }
 // exécution de la fonction "loginSubmit" au champs "input type=submit" du formulaire de login
-let formLogin = document.getElementById("formIds");
-formLogin.addEventListener("submit", loginSubmit);
+let formLogin = document.querySelector(".login-form");
 
+if (formLogin) {
+    formLogin.addEventListener("submit", loginSubmit)        
+    }
 /////// IDS DE CONNEXION email: sophie.bluel@test.tld password: S0phie 
 
  // Retrait du Token, du mode édition, et du "Logout" pour retour à "Login" dans le nav"
     logoutNav.addEventListener("click", (event) => {
         
         event.preventDefault();
-        window.sessionStorage.removeItem("sessionUserInfo");
+        window.localStorage.removeItem(sessionUserInfo.key);
     
          //Retirer le display des classes en mode edition
-        editionDiv.style.visibility ="hidden";
-        logoutNav.style.display ="none";
-        loginNav.style.display ="visible";            
-    });
+         if (editionDiv) {
+            editionDiv.style.visibility ="hidden";
+         }
+         if (logoutNav) {
+            logoutNav.style.display ="none";
+         }
+        if (loginNav) {
+            loginNav.style.display ="unset";
+        }                   
+    })
