@@ -4,11 +4,10 @@
               const projets = await reponse.json();
         
               const sectionProjets = document.querySelector(".gallery");
-            //   if (IdCategory != 0) {
 
                 nettoyage(sectionProjets);
-            //   }  
 
+// création des conteneurs des projets de la galerie
                  for (let i = 0; i < projets.length; i++) {
 
         const figureElement = document.createElement("figure");
@@ -24,16 +23,17 @@
                     }
                 }
 
-// création des projets de la galerie
+// création des éléments de chaque projet de la galerie
                     const imageElement = document.createElement("img");        
                         imageElement.setAttribute("src", projets[i].imageUrl);
                         imageElement.setAttribute("alt", projets[i].title);     
             
                     const nomElement = document.createElement("figcaption");
                         nomElement.textContent = projets[i].title;
-        
+// ajout des éléments créés de chaque projet à son conteneur       
                     figureElement.append(imageElement);
-                    figureElement.append(nomElement);  
+                    figureElement.append(nomElement); 
+// ajout du projet à la gallerie 
                     sectionProjets.append(figureElement); 
                   }
                   
@@ -46,22 +46,18 @@ genererProjets();
  async function categorieFiltre () {
      const reponse = await fetch ("http://localhost:5678/api/categories");
     let projetCategorie = await reponse.json();
-//ajouter une div qui contient uniquement les boutons 
-        
-        const filterGroup = document.querySelector(".category-filters");
+
         const filterDiv = document.querySelector(".filters");
+        const filterGroup = document.querySelector(".category-filters");        
         const ProjetGroup = document.querySelector(".gallery");
 
 
-        // Ajout du bouton pour toutes les catégories de travaux
-      
+        // Ajout du bouton pour toutes les catégories de travaux  
         
        const filterSoloAll = document.createElement("button");
        filterSoloAll.innerText = "Tous";
 
-       filterGroup.appendChild(filterSoloAll);
-    // filterGroup.insertBefore(filterSoloAll, filterDiv);
-        
+       filterGroup.appendChild(filterSoloAll);      
 
        filterSoloAll.addEventListener(
         "click",  () => {
@@ -73,10 +69,7 @@ genererProjets();
 
          for (let i = 0; i < projetCategorie.length; i++) {
       const filterSolo = document.createElement("button");
-      filterSolo.innerText = projetCategorie[i].name;    
-
-    // filterGroup.insertBefore(filterSolo, ProjetGroup);
-    //filterGroup.insertBefore(filterSolo, filterDiv);
+      filterSolo.innerText = projetCategorie[i].name;   
    
    
    filterGroup.appendChild(filterSolo);

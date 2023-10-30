@@ -252,6 +252,10 @@ flex-shrink: 0;
 	margin: 0px;
 }
 
+.projets-titre a {
+	text-decoration: none;
+}
+
 .filters  {
 	display: flex;
 	flex-direction: row;
@@ -278,7 +282,7 @@ flex-shrink: 0;
 	font-weight: 700;
 	line-height: normal;
 	
-	margin: 0px 10px 51px 10px;
+	margin: 0px 5px 51px 5px;
 }
 
 .category-filters button:focus {
@@ -313,6 +317,7 @@ flex-shrink: 0;
 	height: 15.58px;
 	color: #FFF;
 	border: 1px solid #FFF;
+	padding-right: 10px;
 }
 
 .text-edition {

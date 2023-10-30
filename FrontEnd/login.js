@@ -2,14 +2,14 @@
 
 const editionDiv = document.querySelector(".edition-mode");
 const logoutNav = document.querySelector(".logout");
-const loginNav = document.querySelector(".login")
+const loginNav = document.querySelector(".login");
+const filterDiv = document.querySelector(".filters");
+const filterGroup = document.querySelector(".category-filters");
 
-// infos token sous forme d'objet
-let  sessionUserInfo = {
-    key : "userToken", 
-    value : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY5MzkyNDc3NywiZXhwIjoxNjk0MDExMTc3fQ.n4Dx8KrQVIonAm6tvYYl4L6k3MIhihM-CVNMk5CC5iU",
-}
 
+let getsessionUserInfo = localStorage.getItem("sessionUserInfo");
+
+    
 async function loginSubmit(event) {
     event.preventDefault();
 
@@ -22,9 +22,7 @@ const userPassword = document.getElementById("password").value;
 
 method: "POST",
 
-headers: { "Content-Type": "application/json"
-
-},
+headers: { "Content-Type": "application/json"},
 
 body: JSON.stringify({
 
@@ -43,21 +41,12 @@ body: JSON.stringify({
 
     console.log(response);
 
-// Ajout/modification du display des classes en mode edition 
+    
 
-if (logoutNav)  {
-    logoutNav.style.display ="unset";
-}  
- if (loginNav) {
-    loginNav.style.display ="none"
- }   
+
 
  /////// retour vers page d'accueil en mode connecté
-//  window.location.href = "index.html";
-
- if (editionDiv) {   
-    editionDiv.style.visibility ="visible";
-}
+  window.location.href = "index.html";
 
 return response.json();  
 
@@ -69,49 +58,113 @@ return response.json();
     } else if (response.status !== 200 && userEmail && userPassword) {
         console.log("error");
 
-        document.querySelector(".error-message").innerHTML = " ! Erreur dans l'identifiant ou le mot de passe !"
+        document.querySelector(".error-message").innerHTML = "! Erreur dans l'identifiant ou le mot de passe !"
      }
 
     })
 
-.then ((userInfo) => {  
-    
-    let getToken = window.localStorage.getItem(sessionUserInfo);   
+///////////////////////////////////////////////////////////////////////////
 
-    if (getToken === null) {
+// userInfo renvoie les valeurs du token dans le local storage : la valeur id est la clé, la valeur de token est la valeur
+.then ((userInfo) => {     
+    
+
+    if (getsessionUserInfo === null) {
         console.log ("Token manquant, rajout au local storage");
-        window.localStorage.setItem(sessionUserInfo.key, sessionUserInfo.value);     
+        // // window.localStorage.setItem(sessionUserInfo.key, sessionUserInfo.value); 
+        window.localStorage.setItem("sessionUserInfo", userInfo.token);    
 
     } else (
         console.log("Token déjà présent")
     )   
-     console.log(userInfo);
-        
-    })
+    
+     console.log(userInfo);       
+ 
+})
 
 }
-// exécution de la fonction "loginSubmit" au champs "input type=submit" du formulaire de login
+
+ function connectedUser() {
+
+      
+if (localStorage.getItem("sessionUserInfo") !== null) {        
+    // Ajout/modification du display des classes en mode edition 
+    if (logoutNav)  {
+        logoutNav.style.display ="unset"
+    }  
+     if (loginNav) {
+        loginNav.style.display ="none"
+     }                
+     if (editionDiv) {   
+        editionDiv.style.visibility ="visible"
+    }     
+    if (filterDiv) {
+        filterGroup.style.display ="none"
+    }   
+    if (filterGroup) {
+        filterGroup.style.display ="none"
+    }
+
+} else if (localStorage.getItem("sessionUserInfo") == null) {
+
+    if (editionDiv) {
+        editionDiv.style.visibility ="hidden"
+     }
+     if (logoutNav) {
+        logoutNav.style.display ="none"
+     }
+    if (loginNav) {
+        loginNav.style.display ="unset"
+    }
+    if (filterDiv) {
+        filterGroup.style.display ="unset"
+    }   
+    if (filterGroup) {
+        filterGroup.style.display ="unset"
+    }
+}
+ }
+  
+  
+ connectedUser();
+
+// exécution de la fonction "loginSubmit" et "connectedUser" au champs "input type=submit" du formulaire de login
 let formLogin = document.querySelector(".login-form");
 
 if (formLogin) {
-    formLogin.addEventListener("submit", loginSubmit)        
+    formLogin.addEventListener("submit", loginSubmit)
+    // formLogin.addEventListener("submit", connectedUser)           
     }
+    
 /////// IDS DE CONNEXION email: sophie.bluel@test.tld password: S0phie 
 
  // Retrait du Token, du mode édition, et du "Logout" pour retour à "Login" dans le nav"
     logoutNav.addEventListener("click", (event) => {
         
         event.preventDefault();
-        window.localStorage.removeItem(sessionUserInfo.key);
-    
-         //Retirer le display des classes en mode edition
-         if (editionDiv) {
-            editionDiv.style.visibility ="hidden";
+        // window.localStorage.removeItem(sessionUserInfo.key);
+          //Retirer le display des classes en mode edition
+          if (editionDiv) {
+            editionDiv.style.visibility ="hidden"
          }
          if (logoutNav) {
-            logoutNav.style.display ="none";
+            logoutNav.style.display ="none"
          }
         if (loginNav) {
-            loginNav.style.display ="unset";
-        }                   
+            loginNav.style.display ="unset"
+         }
+        if (filterDiv) {
+                filterGroup.style.display ="unset"
+        }   
+        if (filterGroup) {
+                filterGroup.style.display ="unset"
+        }
+                  
+    
+        window.localStorage.removeItem("sessionUserInfo");
+        
+        // connectedUser();
+         
     })
+
+    
