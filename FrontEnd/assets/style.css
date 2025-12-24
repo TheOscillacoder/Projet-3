@@ -1,7 +1,4 @@
-/* http://meyerweb.com/eric/tools/css/reset/
-   v2.0 | 20110126
-   License: none (public domain)
-*/
+
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -31,11 +28,7 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav {
 	display: block;
 }
-/* 
-div, section {
-	display: unset;
-}
-  */
+
 body {
 
 	line-height: 1;
@@ -123,6 +116,7 @@ nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
 }
+
 nav li :active {
 	font-weight: bold;
 }
@@ -149,6 +143,7 @@ li:hover {
 #introduction article {
 	flex: 1
 }
+
 #introduction h2 {
 	margin-bottom: 1em;
 }
@@ -173,6 +168,8 @@ li:hover {
 
 .gallery img {
 	width: 100%;
+	object-fit: cover;
+	height: 100%;
 
 }
 #contact {
@@ -189,7 +186,7 @@ li:hover {
 
 #contact form {
 	text-align: left;
-	margin-top:30px;
+	margin-top: 30px;
 	display: flex;
 	flex-direction: column;
 }
@@ -211,11 +208,11 @@ li:hover {
 }
 
 input[type="submit"]{
+
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
-	background-color: #1D6154;
-	margin : 2em auto ;
+	margin : 2em auto ;	
 	width: 180px;
 	text-align: center;
 	border-radius: 60px ;
@@ -358,6 +355,7 @@ flex-shrink: 0;
 /****dans le menu****/
 .logout {
 	display: none;
+	cursor: pointer;
 }
 	/******************PAGE LOGIN***********************/
 
@@ -436,35 +434,92 @@ flex-shrink: 0;
 
 /******************MODALE***********************/
 
-.modal :focus {
+.js-modal :focus {
 	box-shadow: 0 0 10px blue;
 }
 
-.modal {
-	
+.js-modal {	
 	position:sticky;
 	top: 30%;
 	left: 30%;
-	bottom: 30%;
-
-	width: 630px;
-	height: 731px;		
+	right: 30%;
+	bottom: 30%;		
 }
 
-
-.modal-wrapper {
-	width: 100%;
-	height: 100%;
-	padding: 30px;
-
+.modal {
+	display: flex;
+	width: 630px;
+	height: fit-content;
 	text-align: center;
+
+	border: solid 1px #B3B3B3;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 	border-radius: 10px;
 	background: white;
 	animation: fadeIn 0.3s both;	
 }
 
+.modal-wrapper {
+	width: 100%;
+	padding: 30px;
+}
 
-.modal-title {
+.underline {
+	width: 420px;
+	justify-self: center;
+	border: solid 1px #B3B3B3;
+	margin-bottom: 50px;
+}
+
+.modal-gallery {
+	display: flex;
+	width: 100%;
+	justify-self: center;
+	max-width: 420px;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 10px;
+
+	margin-top: 50px;
+	margin-bottom: 50px;
+
+}
+ 
+.modal-gallery img {
+	position: relative;
+	width: 75px;
+	height: 100px;
+} 
+
+.modalProjetImgdiv {
+	position: relative;
+}
+
+.deleteButtonModal {
+	position: absolute;
+
+	right: 5px;
+    top: 5px;
+	height: fit-content;
+	width: fit-content;
+
+	/* padding: 1px; */
+	background-color: black;
+	padding : 2px;
+
+	border: none;
+	border-radius: 2px;
+}
+
+.deleteButtonModal:active {
+	background-color:crimson;
+}
+
+.fa-trash-can {
+	color: white;
+}	
+
+.modal-title-gallery, .modal-title-photos {
 	color: #000;
 	text-align: center;
 	font-family: Work Sans;
@@ -473,7 +528,10 @@ flex-shrink: 0;
 	font-weight: 400;
 	line-height: normal;
 
-	padding: 10px 0px 36px 0px;
+}
+
+.modal-title-photos {
+	display: none;
 }
 
 .modal-top-logo {
@@ -481,46 +539,62 @@ flex-shrink: 0;
 	justify-content: space-between;
 }
 
-.modal-top-logo img {
-	width: 24px;
+.modal-arrow {	
+	visibility: hidden;
+	height: 21px;
+	width: 21px;
+}
+
+.modal-cross-exit {
 	height: 24px;
+	width: 24px;
+}
+
+.modal-top-logo img {	
 	border: none;
 }
 
+
+
 .modal-content {
-	display: flex;
+	display: none;
 	 
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
-	border-bottom: solid #B3B3B3 1px;
-	margin-bottom: 47px;		
+	margin-top: 50px;
+	margin-bottom: 50px;
+	
 }
 
-
+ 
 .modal-content label input[type="file"] {
-	display: none;
-}
+	visibility: hidden;
+} 
 
+
+.imageLoader img {
+	width: 75px;
+	height: 75px;
+}
 
 .modal-rectangle {
-	display: flex;
+	display: none;
+	/* display: flex; */
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	
 	width: 420px;
 	height: 169px;
-	flex-shrink: 0;
-
 	border-radius: 3px;
 	background: #E8F1F6;
 }
 
 
 .modal-rectangle img {
-	max-width: 58px;
-	max-height: 58px;
+	width: 35%;
+	max-height: 55%;
 	padding-bottom: 15px;
 }
 
@@ -546,96 +620,59 @@ flex-shrink: 0;
 	background: #CBD6DC;
 }
 
-/* 
-.bouton-ajouter-photo {
-	width: 173px;
-	height: 36px;
-	flex-shrink: 0;	
-
-	border-radius: 50px;
-	background: #CBD6DC;
-	border: none;
-
-	color: #306685;
-	text-align: center;
-	font-family: Work Sans;
-	font-size: 14px;
-	font-style: normal;
-	font-weight: 500;
-	line-height: normal;
-} */
-
-
-.form-modal {
-	display: flex;
-	flex-direction: column;
-	text-align: left;
-	margin-bottom: 47px;
+.fileType {
+	font-size: 10px;
 }
 
-.form-modal input, .form-modal select  {
-	width: 410px;
+.form-modal {
+	display: none;
+	/* display: flex; */
+	flex-direction: column;
+	text-align: left;
+}
+
+ .form-modal > select  {
+	width: 100%;
 	height: 51px;
 
 	background: #FFF;
 	outline-style: none;
 }
 
-.form-modal label {
- 	padding-bottom: 10px;
- 	margin-top: 37px;
+.form-modal > label {
+ 	margin-top: 20px;
+	margin-bottom : 20px;
+} 
+
+.bouton-modal-valider, .bouton-modal-galerie-photo {
+	width: 237px;
+	height: 36px;
+	flex-shrink: 0;
+
+	border-radius: 60px;
+	border: none;
+	
+	color: #FFF;
+	text-align: center;
+	font-family: Syne;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
 }
 
+.bouton-modal-galerie-photo, .bouton-valider {
+	background: #1D6154;	
+}
 
 .bouton-modal-valider {
-	width: 237px;
-	height: 36px;
-	flex-shrink: 0;
-
-	border-radius: 60px;
-	background: #A7A7A7;
-	border: none;
-
-
-	color: #FFF;
-	text-align: center;
-	font-family: Syne;
-	font-size: 14px;
-	font-style: normal;
-	font-weight: 700;
-	line-height: normal;
+	position: relative;
+	margin: 0px;
+	top : 60px;
+	display: none;
+	background-color: #B3B3B3;
 }
 
-bouton-modal2-photo {
-	width: 237px;
-	height: 36px;
-	flex-shrink: 0;
-
-	border-radius: 60px;
-	background: #1D6154;
-	border: none;
-
-
-	color: #FFF;
-	text-align: center;
-	font-family: Syne;
-	font-size: 14px;
-	font-style: normal;
-	font-weight: 700;
-	line-height: normal;
-}
-
-modal-suppr-gallerie {
-	width: 230px;
-
-	color: #D65353;
-	text-align: center;
-	font-family: Syne;
-	font-size: 14px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: normal;
-}
 
 
 @keyframes fadeIn {

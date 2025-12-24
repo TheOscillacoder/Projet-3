@@ -8,13 +8,14 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
 	<link rel="stylesheet" href="assets/style.css">
 	<script src="index.js" defer></script>
-	<script src="modal.js" defer></script>	
 	<script src="login.js" defer></script>
 </head>
-<body>
-	
+<body>	
 <header>
 	<!-- class="edition-mode" a AJOUTER lors du mode user connecté  -->
 	<div class="edition-mode">
@@ -27,7 +28,9 @@
 	<nav class="nav-index">
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<ul>
-			<li><strong>projets</strong></li>
+			<a href="#gallery">
+				<li><strong>projets</strong></li>
+			</a>
 			<a href="#contact"> <li>contact</li> </a>
 			<a href="login.html"> <li class="login">login</li></a>
 			<li class="logout">logout</li>
@@ -51,76 +54,60 @@
 	<section id="portfolio">
 		<div class="projets-titre">
 		<h2>Mes Projets</h2>
-		<a href="#modal1"><img src="assets/icons/Vector.svg" class="logo-edition"><span class="modifier-text">modifier</span>
+		<a href="#modal1"> <img src="assets/icons/Vector.svg" class="logo-edition"> <span class="modifier-text" class="js-modal">modifier</span>
 		</a> 
 		</div>
 		<div class="filters">
 			<div class="category-filters">						
 		<!--généré dynamiquement en JS-->
 			</div>		
-		</div>	
-			<div class="gallery">
-		<!--généré dynamiquement en JS-->			
-			<p class="modal-title">Ajout photo</p>
-			<div class="modal-content">
-				<div class="modal-rectangle js-modal-stop">
-					<img src="assets/icons/picture-svgrepo-com 1.svg">
-						<label class="label-modal-button">
-							 <input type="file" accept="image/jpeg, image/png" class="js-modal-stop">  
-							<p>+ Ajouter photo</p>
-						</label>	
-					<p>jpg, png : 4mo max</p>
+		</div> 
+			<div id="gallery" class="gallery">
+		<!--généré dynamiquement en JS-->	
+			</div>		
+		<aside id="modal1" class="modal" aria-hidden="true" role="dialog">
+			<div class="modal-wrapper js-modal-stop">
+				<div class="modal-top-logo">
+					<img src="assets/icons/arrow-left.svg" class="modal-arrow">
+						<img src="assets/icons/xmark.svg" class="modal-cross-exit js-modal-close">  
 				</div>
-				<form action="#" method="post" class="form-modal">
-					<label for="titre">Titre</label>
-					<input type="text" name="titre" id="titre">
-					<label for="categorie">Catégorie</label>
-					<select name="categorie" id="categorie">
-						<!--NOM DES CATEGORIES A REMPLACER PAR LE FETCH DES CATEGORIES ?-->
-						<option value=""></option>
-						<option value="Objets">Objets</option>
-						<option value="Appartements">Appartements</option>
-						<option value="Hotels & restaurants">Hotels & restaurants</option>
-					</select>
-				</form>
-			</div>
-				<input type="button" value="Valider" class="bouton-modal-valider">				
-		</div>
-	</aside>
-	<!--MODALE VERSION 2 AVEC LES PROJETS EN MINIATURE ET AJOUT/RETRAIT-->
-
-
-	<!-- <aside id="modal2" class="modal" aria-hidden="true" role="dialog" style="display:none">  style="display:none"> -->
-		<!-- <div class="modal-wrapper js-modal-stop">
-			<div class="modal-top-logo">
-				<img src="assets/icons/arrow-left.svg">
-				<button class="js-modal-close">
-					<i class="fa-solid fa-xmark"></i>  
-				</button>
-			</div>
-			<p class="modal-title">Ajout photo</p>
-			<div class="modal-content">
-				<div class="modal-rectangle js-modal-stop">
-					<img src="assets/icons/picture-svgrepo-com 1.svg">
-						<input type="button" value=" + Ajouter photo" class="bouton-ajouter-photo" class="js-modal-stop">
-					<p>jpg, png : 4mo max</p>
+				<!--A MASQUER DANS LA MODALE VERSION AJOUT PHOTO!-->
+				<!--modale version Galerie-->
+				<p class="modal-title-gallery">Galerie photo</p>
+				<!---AJOUT DIV JS pour conteneur galerie-->
+				<div class="modal-gallery">
+				<!-- généré dynamiquement en JS-->			
 				</div>
+
+				<!--modale version Ajout Photo-->
+				<!--A MASQUER DANS LA MODALE VERSION GALERIE!-->
+				<p class="modal-title-photos">Ajout photo</p>				
+				<div class="modal-content">
 				<form action="#" method="post" class="form-modal">
+					<div class="modal-rectangle js-modal-stop imageLoader">						
+						<img src="assets/icons/picture-svgrepo-com 1.svg" class="preview-picture-modale" alt="Image preview">
+							<label class="label-modal-button">							
+								<p>+ Ajouter photo</p>								
+							 	<input type="file" onchange="PreviewandUploadProjet()" accept="image/jpeg, image/png" name="image" id="image">														
+							</label>	
+						<p class= "fileType">jpg, png : 4mo max</p>
+					</div>						
 					<label for="titre">Titre</label>
-					<input type="text" name="titre" id="titre">
+						<input type="text" name="titre" id="titre">
 					<label for="categorie">Catégorie</label>
-					<select name="categorie" id="categorie">
-						<option value=""></option>
-						<option value="Objets">Objets</option>
-						<option value="Appartements">Appartements</option>
-						<option value="Hotels & restaurants">Hotels & restaurants</option>
-					</select>
+						<select name="categorie" id="categorie">
+						<!--NOM DES CATEGORIES A REMPLACER PAR LE FETCH DES CATEGORIES-->
+						</select>
+						
+					<input type="submit" value="Valider" class="bouton-modal-valider">
 				</form>
+				</div>
+				<div class="underline"></div>
+				<input type="button" value="Ajouter une photo" class="bouton-modal-galerie-photo">
+								
 			</div>
-				<input type="button" value="Valider" class="bouton-modal-valider">				
-		</div>
-	</aside> -->
-	
+		</aside>
+	</section>		
 	<section id="contact">
 		<h2>Contact</h2>
 		<p>Vous avez un projet ? Discutons-en !</p>
@@ -131,11 +118,10 @@
 			<input type="email" name="email" id="email">
 			<label for="message">Message</label>
 			<textarea name="message" id="message" cols="30" rows="10"></textarea>
-			<input type="submit" value="Envoyer">
+			<input type="submit" value="Envoyer" class="bouton-valider">
 		</form>
 	</section>
 </main>
-
 <footer>
 	<nav>
 		<ul>
