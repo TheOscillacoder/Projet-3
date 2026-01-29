@@ -249,9 +249,9 @@ flex-shrink: 0;
 	margin: 0px;
 }
 
-.projets-titre a {
+/* .projets-titre a {
 	text-decoration: none;
-}
+} */
 
 .filters  {
 	display: flex;
@@ -310,9 +310,8 @@ flex-shrink: 0;
 
 
 .logo-edition {
-	width: 15.58px;
-	height: 15.58px;
-	color: #FFF;
+	width: 15px;
+	height: 15px;
 	border: 1px solid #FFF;
 	padding-right: 10px;
 }
@@ -438,30 +437,37 @@ flex-shrink: 0;
 	box-shadow: 0 0 10px blue;
 }
 
-.js-modal {	
-	position:sticky;
-	top: 30%;
-	left: 30%;
-	right: 30%;
-	bottom: 30%;		
-}
 
 .modal {
+/* tuto modale grafikart */
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background:rgba(0, 0, 0, 0.8);
+
 	display: flex;
-	width: 630px;
-	height: fit-content;
+	/* width: 630px;
+	height: fit-content; */
 	text-align: center;
 
 	border: solid 1px #B3B3B3;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 	border-radius: 10px;
-	background: white;
+	/* background: white; */
 	animation: fadeIn 0.3s both;	
 }
 
 .modal-wrapper {
-	width: 100%;
+	/* width: 100%; */
 	padding: 30px;
+	/* tuto modale grafikart */
+	width: 630px;
+	overflow: auto;
+	max-width: calc(100vw - 20px);
+	max-height: calc(100vh - 20px);
+	background-color: white;
 }
 
 .underline {
@@ -489,6 +495,7 @@ flex-shrink: 0;
 	position: relative;
 	width: 75px;
 	height: 100px;
+	object-fit: cover;
 } 
 
 .modalProjetImgdiv {
@@ -545,10 +552,6 @@ flex-shrink: 0;
 	width: 21px;
 }
 
-.modal-cross-exit {
-	height: 24px;
-	width: 24px;
-}
 
 .modal-top-logo img {	
 	border: none;

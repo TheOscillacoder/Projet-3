@@ -80,122 +80,6 @@ function nettoyage(element) {
 
      categorieFiltre();         
 
-let modal = null
-//const focusableSelector = "button, a, input, textarea"
-//let focusables = []
-//let previouslyFocusedElement = null
-
-const openModal = function (event) {
-    event.preventDefault()
-    const target = document.querySelector(event.target.getAttribute("href"))
-    if (target) {
-    target.style.display = null
-    }
-    target.removeAttribute("aria-hidden")
-    target.setAttribute("aria-modal", "true")
-    modal = target
-    modal.addEventListener("click", closeModal) 
-    modal.querySelector(".js-modal-close").addEventListener("click", closeModal)
-    modal.querySelector(".js-modal-stop").addEventListener("click", closeModal)
-    }
-
-    const closeModal = function (event) {
-        if (modal === null) return
-    event.preventDefault()
-
-    target.style.display = "none";
-    target.setAttribute("aria-hidden", true)
-    target.removeAttribute("aria-modal")
-    modal.removeEventListener("click", closeModal) 
-    modal.querySelector(".js-modal-close").removeEventListener("click", closeModal)
-    modal.querySelector(".js-modal-stop").removeEventListener("click", closeModal)
-    modal = null
-    }
-    
-    document.querySelectorAll(".js-modal").forEach(a => {
-        a.addEventListener("click", openModal)        
-    })
-
-    const stopPropagation = function (event) {
-        event.stopPropagation()
-    }
-    
- window.addEventListener("keydown", function (event) {
-    if (event.key === "Escape" || event.key === "Esc") {
-        closeModal(event)
-    }
-    if(event.key === "tab" && modal !== null){
-        focusInModal(event)
-    }
-})    
-    // focusables = Array.from(modal.querySelectorAll(focusableSelector))
-    // previouslyFocusedElement = document.querySelector(":focus") 
-    // focusables[0].focus()
-    // cible l'attribut style="display" écris précédemment dans le fichier index.html
-    //modal.style.display = "none"
-
-     // cible l'attribut arial-hidden écris précédemment dans le fichier index.html
-    //modal.removeAttribute("aria-hidden")
-    //modal.setAttribute("aria-modal", "true")
-
-    //modal.addEventListener("click", closeModal)
-    //modal.querySelector(".js-modal-close").addEventListener("click", closeModal)
-    //modal.querySelector(".js-modal-stop").addEventListener("click", stopPropagation)
-
-
-//const closeModal = function(event) {
-    //if (modal === null) return
-    // if (previouslyFocusedElement !== null) previouslyFocusedElement.focus()
-    //event.preventDefault()
-    // window.setTimeout(function () {
-    //     modal.style.display = "none"
-    // }, 500)
-
-    //modal.style.display = "none"
-    //modal.setAttribute("aria-hidden", true)
-    //modal.removeAttribute("aria-modal")
-    //modal.removeEventListener("click", closeModal)
-
-    //modal.querySelector(".js-modal-close").removeEventListener("click", closeModal)
-    //modal.querySelector(".js-modal-stop").removeEventListener("click", stopPropagation)    
-//}
-
-
-
-
-// const focusInModal = function (event) {
-//     event.preventDefault()
-    
-//     let index = focusables.findIndex(f => f === modal.querySelector(":focus"))
-//     if (event.shiftkey === true) {
-//         index--
-//     } else {
-//         index++
-//     }
-    
-//     if (index >= focusables.length) {
-//         index = 0
-//     }
-//     if (index < 0) {
-//         index = focusables.length - 1
-//     }
-
-//     focusables[index].focus()
-// }
-
-// document.querySelectorAll(".modal-js").forEach(a => {
-//     a.addEventListener("click", openModal)   
-// })
-
-
-
-
-//document.querySelector(".modal").addEventListener("click", openModal);
-
-
-
-// Fonction pour générer la galerie de la modale (reprise de page index)
-
 
 async function genererProjetsModale(IdCategory = 0) {
     const reponse = await fetch("http://localhost:5678/api/works");
@@ -217,27 +101,43 @@ const imageElement = document.createElement("img");
     imageElement.setAttribute("src", projets[i].imageUrl);
     imageElement.setAttribute("alt", projets[i].title);
                
- const deleteProjetDiv = document.createElement("div");
-     deleteProjetDiv.classList.add("modalProjetImgdiv");
+const deleteProjetDiv = document.createElement("div");
+    deleteProjetDiv.classList.add("modalProjetImgdiv");
+
 const deleteTrashButton = document.createElement("button");                    
     deleteTrashButton.classList.add("deleteButtonModal");
+
 const deleteTrashIcon = document.createElement("i");
     deleteTrashIcon.classList.add("fa-solid","fa-trash-can")               
                     
-const allbuttonDelete = document.querySelectorAll(".deleteButtonModal");                
 
-for (let i = 0 ; i < allbuttonDelete.length; i++) {
-    allbuttonDelete[i].addEventListener("click", (event) => {
-        const buttonDelete = allbuttonDelete[i]; 
-                          
+// ajout des éléments créés de chaque éléments du projet à son conteneur
+    deleteProjetDiv.append(imageElement);
+    deleteProjetDiv.append(deleteTrashButton);
+        deleteTrashButton.append(deleteTrashIcon);
+        
+
+    figureElement.appendChild(deleteProjetDiv);
+
+
+// ajout du projet à la gallerie 
+            modalProjets.append(figureElement); 
+         }
+         
+         console.log(projets); 
+
+         const allbuttonDelete = document.querySelectorAll(".deleteButtonModal");                
+// const buttonDelete = allbuttonDelete[i]; 
+console.log(allbuttonDelete)
+allbuttonDelete.forEach(buttonDelete => {
+    buttonDelete.addEventListener("click", (event) => {
+
     event.preventDefault();
     console.log("clické");
                            
     let clickBouton = event.target;
-    let figureWork = buttonDelete.closest("figure");
+    let figureWork = clickBouton.closest("figure");
     let figureWorkId = figureWork.id;
-
-        if (clickBouton = buttonDelete) {
 
         console.log(figureWorkId);                             
 
@@ -253,6 +153,7 @@ for (let i = 0 ; i < allbuttonDelete.length; i++) {
             if (response.ok) {                                
                 console.log(response);
                 console.log("suppression de l'élément de la base de donnée réussi");
+                event.preventDefault()
             } else if (response.status !== 200 && response.status === 401) {
                         console.log("erreur de suppression du projet, requête utilisateur non autorisée, authentification utilisateur requise")
                         }        
@@ -260,23 +161,9 @@ for (let i = 0 ; i < allbuttonDelete.length; i++) {
                         console.log("erreur de suppression du projet, comportement inhabituel")
                         }
                 })
-                         }
-                        })
-                    }   
-// ajout des éléments créés de chaque éléments du projet à son conteneur
-    deleteProjetDiv.append(imageElement);
-    deleteProjetDiv.append(deleteTrashButton);
-        deleteTrashButton.append(deleteTrashIcon);
-        
-
-    figureElement.appendChild(deleteProjetDiv);
-
-
-// ajout du projet à la gallerie 
-            modalProjets.append(figureElement); 
-         }
-         
-         console.log(projets); 
+                
+            })
+        })
      }
 
 genererProjetsModale();
@@ -417,17 +304,26 @@ let fileCategory =  document.getElementById("categorie");
 let formModal = document.querySelector(".form-modal");
 const inputFile = document.querySelector("input[type=file]");
 const previewImage = document.querySelector(".preview-picture-modale");
+const loadedFile = inputFile.files[0];
+let modalFormTitleValue = modalFormTitle.value;
+let fileCategoryValue = Number(fileCategory.value);
 
 inputFile.addEventListener("change", () => {
-const file = inputFile.files[0];
-if (file) {
+// const file = inputFile.files[0];
+// if (file) {
+if (loadedFile) {
     
     const fileReader = new FileReader();  
 
     fileReader.onloadend = () => {         
     previewImage.src = fileReader.result;
 }
-    fileReader.readAsDataURL(file)
+    fileReader.readAsDataURL(loadedFile)
+
+}
+
+if ((loadedFile && modalFormTitleValue && fileCategoryValue)) {
+    modalValiderButton.style.backgroundColor  = "#1D6154";
 }
 })
 
@@ -436,13 +332,9 @@ formModal.addEventListener("submit", (event) => {
     console.log("bouton cliqué")
     event.preventDefault();  
 
-const loadedFile = inputFile.files[0];
-let modalFormTitleValue = modalFormTitle.value;
-let fileCategoryValue = Number(fileCategory.value);
 
-if ((loadedFile && modalFormTitleValue && fileCategoryValue)) {
-    modalValiderButton.style.backgroundColor  = "#1D6154";
-}
+
+
 
 const formData = new FormData();
 

@@ -21,9 +21,6 @@
 	<div class="edition-mode">
 		<img src="assets/icons/Vector.svg" class="logo-edition">
 		<p class="text-edition">Mode édition</p>
-		<div class ="changement-edition">
-			 <p class="changement-text">Publier les changements</p>
-		</div>
 	</div>
 	<nav class="nav-index">
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
@@ -54,8 +51,11 @@
 	<section id="portfolio">
 		<div class="projets-titre">
 		<h2>Mes Projets</h2>
-		<a href="#modal1"> <img src="assets/icons/Vector.svg" class="logo-edition"> <span class="modifier-text" class="js-modal">modifier</span>
+		<div>
+		<a href="#modal1" class="js-modal"> 
+			<img src="assets/icons/Vector.svg" class="logo-edition"> 
 		</a> 
+		</div>
 		</div>
 		<div class="filters">
 			<div class="category-filters">						
@@ -65,11 +65,11 @@
 			<div id="gallery" class="gallery">
 		<!--généré dynamiquement en JS-->	
 			</div>		
-		<aside id="modal1" class="modal" aria-hidden="true" role="dialog">
-			<div class="modal-wrapper js-modal-stop">
+		<aside id="modal1" class="modal" aria-hidden="true" role="dialog" style="display: none;">
+			<div class="modal-wrapper js-modal js-modal-stop">
 				<div class="modal-top-logo">
 					<img src="assets/icons/arrow-left.svg" class="modal-arrow">
-						<img src="assets/icons/xmark.svg" class="modal-cross-exit js-modal-close">  
+						<img src="assets/icons/xmark.svg" alt="fermer la modale" class="js-modal-close">
 				</div>
 				<!--A MASQUER DANS LA MODALE VERSION AJOUT PHOTO!-->
 				<!--modale version Galerie-->
@@ -84,11 +84,11 @@
 				<p class="modal-title-photos">Ajout photo</p>				
 				<div class="modal-content">
 				<form action="#" method="post" class="form-modal">
-					<div class="modal-rectangle js-modal-stop imageLoader">						
+					<div class="modal-rectangle  imageLoader">						
 						<img src="assets/icons/picture-svgrepo-com 1.svg" class="preview-picture-modale" alt="Image preview">
 							<label class="label-modal-button">							
 								<p>+ Ajouter photo</p>								
-							 	<input type="file" onchange="PreviewandUploadProjet()" accept="image/jpeg, image/png" name="image" id="image">														
+							 	<input type="file" accept="image/jpeg, image/png" name="image" id="image">														
 							</label>	
 						<p class= "fileType">jpg, png : 4mo max</p>
 					</div>						
@@ -129,5 +129,6 @@
 		</ul>
 	</nav>
 </footer>
+<script src="modal.js"></script>
 </body>
 </html>
