@@ -297,18 +297,25 @@ categorieModale();
 ////////////////////////////////// AJOUTER PROJET///////////////////////////////////////
 
 
-function PreviewandUploadProjet () {
+
 
 let modalFormTitle = document.getElementById("titre");
 let fileCategory =  document.getElementById("categorie");
 let formModal = document.querySelector(".form-modal");
-const inputFile = document.querySelector("input[type=file]");
+const inputField = document.querySelector("input[type=file]");
 const previewImage = document.querySelector(".preview-picture-modale");
-const loadedFile = inputFile.files[0];
+
+const loadedFile = inputField.files[0];
 let modalFormTitleValue = modalFormTitle.value;
 let fileCategoryValue = Number(fileCategory.value);
 
-inputFile.addEventListener("change", () => {
+function PreviewandUploadProjet () {
+
+const loadedFile = inputField.files[0];
+let modalFormTitleValue = modalFormTitle.value;
+let fileCategoryValue = Number(fileCategory.value);
+
+
 // const file = inputFile.files[0];
 // if (file) {
 if (loadedFile) {
@@ -320,12 +327,16 @@ if (loadedFile) {
 }
     fileReader.readAsDataURL(loadedFile)
 
-}
-})
-
-if ((loadedFile && modalFormTitleValue && fileCategoryValue)) {
+    if ((loadedFile && modalFormTitleValue && fileCategoryValue)) {
     modalValiderButton.style.backgroundColor  = "#1D6154";
+    }
 }
+}
+
+inputField.addEventListener("change" , PreviewandUploadProjet);
+modalFormTitle.addEventListener("input", PreviewandUploadProjet);
+fileCategory.addEventListener("change", PreviewandUploadProjet);
+
 
  if (formModal) {
 formModal.addEventListener("submit", (event) => {
@@ -333,18 +344,21 @@ formModal.addEventListener("submit", (event) => {
     event.preventDefault();  
 
 
-
-
+const loadedFile = inputField.files[0];
+let modalFormTitleValue = modalFormTitle.value;
+let fileCategoryValue = Number(fileCategory.value);
 
 const formData = new FormData();
 
 formData.append("image", loadedFile);
+
+
 formData.append("title", modalFormTitleValue);
+
+
 formData.append("category", fileCategoryValue);
 
 
-
-//             
 //         }  ////////// Comportement en cas de champs vide : /////////
  if ((!modalFormTitleValue || !fileCategoryValue || !loadedFile)) {
         throw new error("Choisissez un fichier photo ET saisissez un titre ET choisissez une catégorie à votre projet.");
@@ -376,5 +390,4 @@ return response.json();
     })
    
 })
-}
 }
