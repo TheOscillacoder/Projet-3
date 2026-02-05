@@ -321,11 +321,11 @@ if (loadedFile) {
     fileReader.readAsDataURL(loadedFile)
 
 }
+})
 
 if ((loadedFile && modalFormTitleValue && fileCategoryValue)) {
     modalValiderButton.style.backgroundColor  = "#1D6154";
 }
-})
 
  if (formModal) {
 formModal.addEventListener("submit", (event) => {
@@ -341,6 +341,8 @@ const formData = new FormData();
 formData.append("image", loadedFile);
 formData.append("title", modalFormTitleValue);
 formData.append("category", fileCategoryValue);
+
+
 
 //             
 //         }  ////////// Comportement en cas de champs vide : /////////

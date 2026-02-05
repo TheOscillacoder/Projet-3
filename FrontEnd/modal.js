@@ -2,8 +2,8 @@
 
 let modal = null
 
-const focusableSelector = 'button, a, input, textarea'
-let focusables = []
+// const focusableSelector = 'button, a, input, textarea'
+// let focusables = []
 
 
 
@@ -32,22 +32,22 @@ const openModal =  function(e) {
         target.removeAttribute('aria-hidden')
         target.setAttribute('aria-modal', 'true')
 
-         if (focusableSelector) {
-    focusables = Array.from(target.querySelectorAll(focusableSelector))
-    }
-    }     
+    //      if (focusableSelector) {
+    // focusables = Array.from(target.querySelectorAll(focusableSelector))
+    // }
+     }     
 
     modal = target   
-    }
-    //  if (modal) {
+
+     // if (modal) {
     //  e.preventDefault()
     //  modal.addEventListener('click', closeModal)
     //  modal.querySelector('.js-modal-close').addEventListener('click', closeModal)
-    //  modal.querySelector('.js-modal-stop').addEventListener('click', stopPropagation)
+    
 
     //   console.log(e.target, e.target.getAttribute('href'),target);
-// }
-// }
+ 
+ }
 
 
    const modalWrapper = document.querySelector('.modal-wrapper');
@@ -62,14 +62,17 @@ const openModal =  function(e) {
     }
 );
 
-const closeModal = function (e) {
+const closeModal = function () {
     if (!modal)
     return     
+//    if (document.querySelector('.label-modal-button')) {
+//              document.querySelector('.label-modal-button').closest('input').setAttribute('inert' , 'true')
+//              }
       
     if (modal) {
 
         console.log("fermeture de modale :" , modal.querySelector('.js-modal-close'))
-    
+          
         modal.style.display = 'none'
         modal.setAttribute('aria-hidden', 'true')
         modal.removeAttribute('aria-modal')
@@ -87,10 +90,10 @@ const stopPropagation = function (e) {
     e.stopPropagation()
 }
 
-const focusInModale = function(e) {
-    let index = focusables.findIndex(modal.querySelector(':focus'))
+// const focusInModale = function(e) {
+//     let index = focusables.findIndex(modal.querySelector(':focus'))
 
-}
+// }
 
 document.querySelectorAll('.js-modal').forEach(a => {
     a.addEventListener('click', openModal)
@@ -100,10 +103,10 @@ document.querySelectorAll('.js-modal').forEach(a => {
 
 window.addEventListener('keydown', function (e) {
     console.log(e.key)
-    if (e.key === "Escape" || "Esc") {
+    if (e.key === "Escape" || e.key === "Esc") {
         closeModal(e)
 }
-if (e.key === "Tab" && modal !== null) {
-    focusInModale(e)
-}
-})
+// if (e.key === "Tab" && modal !== null) {
+//     focusInModale(e)
+// }
+ })

@@ -19,7 +19,6 @@
 <header>
 	<!-- class="edition-mode" a AJOUTER lors du mode user connecté  -->
 	<div class="edition-mode">
-		<img src="assets/icons/Vector.svg" class="logo-edition">
 		<p class="text-edition">Mode édition</p>
 	</div>
 	<nav class="nav-index">
@@ -88,7 +87,7 @@
 						<img src="assets/icons/picture-svgrepo-com 1.svg" class="preview-picture-modale" alt="Image preview">
 							<label class="label-modal-button">							
 								<p>+ Ajouter photo</p>								
-							 	<input type="file" accept="image/jpeg, image/png" name="image" id="image">														
+							 	<input type="file" onchange="PreviewandUploadProjet()" accept="image/jpeg, image/png" name="image" id="image">														
 							</label>	
 						<p class= "fileType">jpg, png : 4mo max</p>
 					</div>						
