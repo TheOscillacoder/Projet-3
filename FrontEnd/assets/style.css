@@ -30,7 +30,6 @@ footer, header, hgroup, menu, nav {
 }
 
 body {
-
 	line-height: 1;
 	max-width: 100%;
 	
@@ -83,9 +82,8 @@ h1 {
 
 h1 > span {
 	font-family: 'Work Sans';
-	font-size:10px;
+	font-size: 10px;
 	letter-spacing: 0.1em;
-
 }
 
 h2 {
@@ -152,26 +150,20 @@ li:hover {
 	margin-bottom: 0.5em;
 }
 
-
-#portfolio h2 {
-	text-align: center;
-	margin-bottom: 1em;
-}
-
 .gallery {
 	width: 100%;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-column-gap: 20px;
-	grid-row-gap: 20px;
+	grid-row-gap: 40px;
 }
 
 .gallery img {
 	width: 100%;
 	object-fit: cover;
 	height: 100%;
-
 }
+
 #contact {
 	width: 50%;
 	margin: auto;
@@ -180,7 +172,7 @@ li:hover {
 	text-align: center;
 }
 
-#contact h2{
+#contact h2 {
 	margin-bottom: 20px;
 }
 
@@ -235,12 +227,12 @@ height: 22px;
 flex-shrink: 0;
 }
 
-
 /******************FILTRES CATEGORIE PROJETS***********************/
 
 .projets-titre {
 	display: flex;
 	gap: 30px;
+	margin-bottom: 30px;
 	align-items: center;
 	justify-content: center;
 }
@@ -249,9 +241,6 @@ flex-shrink: 0;
 	margin: 0px;
 }
 
-/* .projets-titre a {
-	text-decoration: none;
-} */
 
 .filters  {
 	display: flex;
@@ -293,7 +282,6 @@ flex-shrink: 0;
   margin: 50px
 }
 
-
 .edition-mode {
 	visibility: hidden;
 	width: 100%;
@@ -310,10 +298,8 @@ flex-shrink: 0;
 
 
 .logo-edition {
-	width: 15px;
-	height: 15px;
-	border: 1px solid #FFF;
-	padding-right: 10px;
+	width: 20px;
+	height: 20px;
 }
 
 .text-edition {
@@ -437,7 +423,6 @@ flex-shrink: 0;
 	box-shadow: 0 0 10px blue;
 }
 
-
 .modal {
 /* tuto modale grafikart */
 	position: fixed;
@@ -448,22 +433,28 @@ flex-shrink: 0;
 	background:rgba(0, 0, 0, 0.8);
 
 	display: flex;
-	/* width: 630px;
-	height: fit-content; */
+	
 	text-align: center;
 
 	border: solid 1px #B3B3B3;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 	border-radius: 10px;
-	/* background: white; */
+
 	animation: fadeIn 0.3s both;	
 }
 
 .modal-wrapper {
-	/* width: 100%; */
+	
+	position: sticky;
+	top: 25%;
+	left: 25%;
+	right: 25%;
+	bottom: 25%;
 	padding: 30px;
-	/* tuto modale grafikart */
+	border-radius: 10px;
+	
 	width: 630px;
+	height: 630px;
 	overflow: auto;
 	max-width: calc(100vw - 20px);
 	max-height: calc(100vh - 20px);
@@ -474,7 +465,11 @@ flex-shrink: 0;
 	width: 420px;
 	justify-self: center;
 	border: solid 1px #B3B3B3;
-	margin-bottom: 50px;
+}
+
+.underline-form {
+	margin-top: 50px;
+	margin-bottom: 20px;
 }
 
 .modal-gallery {
@@ -558,7 +553,6 @@ flex-shrink: 0;
 }
 
 
-
 .modal-content {
 	display: none;
 	 
@@ -569,14 +563,12 @@ flex-shrink: 0;
 	margin-bottom: 50px;
 	
 }
-
  
 .modal-content label input[type="file"] {
 	visibility: hidden;
 } 
 
-
-.imageLoader img {
+.imageLoader {	
 	width: 75px;
 	height: 75px;
 }
@@ -594,18 +586,22 @@ flex-shrink: 0;
 	background: #E8F1F6;
 }
 
-
-.modal-rectangle img {
-	width: 35%;
-	max-height: 55%;
+.picture-modale {
+	width: 75px;
+	height: 75px;
 	padding-bottom: 15px;
 }
+
+.preview-picture-modale {
+	width: 130px;
+	height: 170px;
+	padding-bottom: 0px ;
+}
+	
 
 .modal-rectangle p {
 	padding-top: 7px;
 }
-
-
 
 .label-modal-button {
 	color: #306685;
@@ -629,7 +625,9 @@ flex-shrink: 0;
 
 .form-modal {
 	display: none;
-	/* display: flex; */
+
+	height: fit-content;
+
 	flex-direction: column;
 	text-align: left;
 }
@@ -665,18 +663,17 @@ flex-shrink: 0;
 }
 
 .bouton-modal-galerie-photo, .bouton-valider {
+	margin-top: 50px;
 	background: #1D6154;	
 }
 
 .bouton-modal-valider {
 	position: relative;
 	margin: 0px;
-	top : 60px;
+	/* top : 60px; */
 	display: none;
 	background-color: #B3B3B3;
 }
-
-
 
 @keyframes fadeIn {
 	from { opacity: 0; }

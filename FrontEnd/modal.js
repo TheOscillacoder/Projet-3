@@ -1,12 +1,7 @@
 
 
 let modal = null
-
-// const focusableSelector = 'button, a, input, textarea'
-// let focusables = []
-
-
-
+                         
 const openModal =  function(e) {     
 
     //vérification présence lien a
@@ -21,35 +16,24 @@ const openModal =  function(e) {
     console.error('Href invalide ou manquant:', targetSelector);
     return;
   }
-  
+  //définition cible = lien modale
   const target = document.querySelector(targetSelector);
     if (!target) {    
         return   
     }    
+    // si cible === document.querySelector(targetSelector) existe,  alors activation/apparition éléments modale
         if (target) {
         e.preventDefault() 
         target.style.display = null
         target.removeAttribute('aria-hidden')
         target.setAttribute('aria-modal', 'true')
 
-    //      if (focusableSelector) {
-    // focusables = Array.from(target.querySelectorAll(focusableSelector))
-    // }
      }     
 
     modal = target   
-
-     // if (modal) {
-    //  e.preventDefault()
-    //  modal.addEventListener('click', closeModal)
-    //  modal.querySelector('.js-modal-close').addEventListener('click', closeModal)
-    
-
-    //   console.log(e.target, e.target.getAttribute('href'),target);
- 
  }
 
-
+//ciblage modal wrapper (interface de la modale) puis declenchement fonction fermeture de modale closeModal
    const modalWrapper = document.querySelector('.modal-wrapper');
 
     modalWrapper.addEventListener('click', (e) => {
@@ -61,25 +45,18 @@ const openModal =  function(e) {
         }
     }
 );
-
+//fonction fermeture de modale
 const closeModal = function () {
-    if (!modal)
-    return     
-//    if (document.querySelector('.label-modal-button')) {
-//              document.querySelector('.label-modal-button').closest('input').setAttribute('inert' , 'true')
-//              }
-      
+    //si pas de cible avec valeur de target (ciblant le lien d'ouverture) , return
+    if (!modal) {
+    return    
+    } 
+// si modal (= target) === document.querySelector(targetSelector) existe, alors activation/apparition éléments modale
     if (modal) {
-
-        console.log("fermeture de modale :" , modal.querySelector('.js-modal-close'))
-          
+        console.log("fermeture de modale :" , modal.querySelector('.js-modal-close'))          
         modal.style.display = 'none'
         modal.setAttribute('aria-hidden', 'true')
         modal.removeAttribute('aria-modal')
-        // modal.removeEventListener('click', closeModal)
-        // modal.querySelector('.js-modal-close').removeEventListener('click', closeModal)
-        // modal.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation)
-
     }    
 
      modal = null
@@ -90,23 +67,19 @@ const stopPropagation = function (e) {
     e.stopPropagation()
 }
 
-// const focusInModale = function(e) {
-//     let index = focusables.findIndex(modal.querySelector(':focus'))
 
-// }
+//cible tous les éléments avec js.modal pour déclencher l'ouverture au clic
 
 document.querySelectorAll('.js-modal').forEach(a => {
     a.addEventListener('click', openModal)
-    
 })
 
+//déclenchement de la fonction de fermeture de la modale sur touche echap
 
 window.addEventListener('keydown', function (e) {
     console.log(e.key)
     if (e.key === "Escape" || e.key === "Esc") {
         closeModal(e)
 }
-// if (e.key === "Tab" && modal !== null) {
-//     focusInModale(e)
-// }
+
  })

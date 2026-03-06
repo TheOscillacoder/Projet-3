@@ -1,135 +1,99 @@
-    async function genererProjets(IdCategory = 0) {
-             const reponse = await fetch("http://localhost:5678/api/works");
-              const projets = await reponse.json();
-        
-              const sectionProjets = document.querySelector(".gallery");
-
-                nettoyage(sectionProjets);
-// création des conteneurs des projets de la galerie
-                 for (let i = 0; i < projets.length; i++) {
-
-        const figureElement = document.createElement("figure");
-            figureElement.setAttribute("id", projets[i].id);
-            figureElement.setAttribute("idCategory", projets[i].categoryId);
-                    // lorsque le paramètre en argument IdCategory est différent de 0 :                    
-                    // si IdCategory est différent de la valeur de categoryId de chaque projet,
-                    // alors la figure ne s'affiche pas
-                     if (IdCategory != 0) {
-                            if (IdCategory != projets[i].categoryId) {
-                          figureElement.style.display = "none";          
-                       }
-                   }
-// création des éléments de chaque projet de la galerie
-                    const imageElement = document.createElement("img");        
-                        imageElement.setAttribute("src", projets[i].imageUrl);
-                        imageElement.setAttribute("alt", projets[i].title);     
-            
-                    const nomElement = document.createElement("figcaption");
-                        nomElement.textContent = projets[i].title;
-// ajout des éléments créés de chaque projet à son conteneur       
-                    figureElement.append(imageElement);
-                    figureElement.append(nomElement); 
-// ajout du projet à la gallerie 
-                    sectionProjets.append(figureElement); 
-                  }
-                  
-                  console.log(projets); 
-              }
-
-genererProjets();
-
-function nettoyage(element) {
-    while (element.firstChild) {
-        element.removeChild(element.firstChild);
-    }
+//Fetch des donnéées depuis l'API
+async function fetchWorkData() {
+    const response = await fetch ("http://localhost:5678/api/works")
+    return response.json()
 }
 
- async function categorieFiltre () {
-     const reponse = await fetch ("http://localhost:5678/api/categories");
-    let projetCategorie = await reponse.json();
+// Nettoyage des works en double générés au clics sur les filtres
+ function nettoyage(element) {
+     while (element.firstChild) {
+         element.removeChild(element.firstChild);
+     }
+ }
+// Filtrage des works en fonction de l'id catégory, si 0 ==> all 
+function filterWorks(works, idCategory = 0) {
+if (idCategory === 0)  {
+    return works;
+}
+else {
+    return works.filter(work => work.categoryId === idCategory)
+}
+}
 
-        const filterDiv = document.querySelector(".filters");
-        const filterGroup = document.querySelector(".category-filters");        
-        const ProjetGroup = document.querySelector(".gallery");
+// Génération de galerie de la page d'accueil
+async function homeWorkGallery(containerSelector, idCategory = 0) {
+    const workGallery = document.querySelector(containerSelector);
 
-        // Ajout du bouton "Tous"        
-       const filterAll = document.createElement("button");
-       filterAll.innerText = "Tous";
+    if (!workGallery) {
+        console.error(`conteneur introuvable avec le sélecteur "${containerSelector}"`);
+        return;
+    }
+      nettoyage(workGallery);
+// utilisation de la fonction précédente fetchWorkData (pour fetch les works depuis l'api
+              const works = await fetchWorkData();
+              const filteredWorks = filterWorks(works, idCategory)
+// création des conteneurs des projets de la galerie avec méthode forEach
 
-       filterGroup.appendChild(filterAll);      
+            filteredWorks.forEach(work => {
+        const figureElement = document.createElement("figure");
+            figureElement.setAttribute("id", work.id);
+            figureElement.setAttribute("idCategory", work.categoryId);
+            
 
-       filterAll.addEventListener(
-        "click",  () => {
-            genererProjets()
-        }
-        )        
-        // générer un bouton par catégorie avec leur nom respectif
-         for (let i = 0; i < projetCategorie.length; i++) {
-      const filterItem = document.createElement("button");
-      filterItem.innerText = projetCategorie[i].name;  
+// création des éléments composant chaque work de la galerie
+            const imageElement = document.createElement("img");        
+                imageElement.setAttribute("src", work.imageUrl);
+                imageElement.setAttribute("alt", work.title);  
+                figureElement.append(imageElement);                     
+// condition différence affichage informations homegallery/modal-gallery
+                        if (containerSelector === ".gallery") {
+                        const nomElement = document.createElement("figcaption");
+                        nomElement.textContent = work.title;
+                        figureElement.append(nomElement); 
+                        }
 
-      filterGroup.appendChild(filterItem);
-      filterItem.addEventListener(
-        "click", () => {
-            genererProjets(projetCategorie[i].id);
-        }
-      )
-      }
-    
-         }        
+                // ajout du projet à la galerie 
+                workGallery.append(figureElement); 
+                console.log(works); 
 
-     categorieFiltre();         
+                })
 
+}                                 
+    //Execution de la fonction avec les paramètres définis que l'on souhaite afficher : conteneur de destination et contenu
+    homeWorkGallery(".gallery", 0);
 
-async function genererProjetsModale(IdCategory = 0) {
-    const reponse = await fetch("http://localhost:5678/api/works");
-     const projets = await reponse.json();
+// Génération de galerie de la modale
+async function modalWorkGallery(idCategory = 0) {
+//réutilisation de la première fonction de génération de galerie
+    await homeWorkGallery(".modal-gallery", idCategory);
 
-     const modalProjets = document.querySelector(".modal-gallery");
+    const modalGallery = document.querySelector(".modal-gallery");
+// création des éléments spécifique composant cette version de la galerie
+    modalGallery.querySelectorAll("figure").forEach (figure => {
+        const imageElement = figure.querySelector("img");
 
-       nettoyage(modalProjets);
+    const deleteProjetDiv = document.createElement("div");
+        deleteProjetDiv.classList.add("modalProjetImgdiv");
 
-// création des conteneurs des projets de la galerie
-        for (let i = 0; i < projets.length; i++) {
+    const deleteTrashButton = document.createElement("button");                    
+        deleteTrashButton.classList.add("deleteButtonModal");
 
-const figureElement = document.createElement("figure");
-    figureElement.setAttribute("id", projets[i].id);
-    figureElement.setAttribute("IdCategory", projets[i].categoryId);
-
-// création des éléments de chaque projet de la galerie
-const imageElement = document.createElement("img");        
-    imageElement.setAttribute("src", projets[i].imageUrl);
-    imageElement.setAttribute("alt", projets[i].title);
-               
-const deleteProjetDiv = document.createElement("div");
-    deleteProjetDiv.classList.add("modalProjetImgdiv");
-
-const deleteTrashButton = document.createElement("button");                    
-    deleteTrashButton.classList.add("deleteButtonModal");
-
-const deleteTrashIcon = document.createElement("i");
-    deleteTrashIcon.classList.add("fa-solid","fa-trash-can")               
-                    
+    const deleteTrashIcon = document.createElement("i");
+        deleteTrashIcon.classList.add("fa-solid","fa-trash-can")               
+       
 
 // ajout des éléments créés de chaque éléments du projet à son conteneur
     deleteProjetDiv.append(imageElement);
-    deleteProjetDiv.append(deleteTrashButton);
-        deleteTrashButton.append(deleteTrashIcon);
-        
+    deleteTrashButton.append(deleteTrashIcon);
+    deleteProjetDiv.append(deleteTrashButton);   
+    figure.appendChild(deleteProjetDiv);
+       
+    
+// ajout fonctionnement Requête DELETE pour suppression work
+    const allbuttonDelete = document.querySelectorAll(".deleteButtonModal");                
 
-    figureElement.appendChild(deleteProjetDiv);
-
-
-// ajout du projet à la gallerie 
-            modalProjets.append(figureElement); 
-         }
-         
-         console.log(projets); 
-
-         const allbuttonDelete = document.querySelectorAll(".deleteButtonModal");                
-// const buttonDelete = allbuttonDelete[i]; 
-console.log(allbuttonDelete)
-allbuttonDelete.forEach(buttonDelete => {
+    console.log(allbuttonDelete)
+    allbuttonDelete.forEach(buttonDelete => {
     buttonDelete.addEventListener("click", (event) => {
 
     event.preventDefault();
@@ -164,15 +128,50 @@ allbuttonDelete.forEach(buttonDelete => {
                 
             })
         })
-     }
-
-genererProjetsModale();
-
-function nettoyage(element) {
-    while (element.firstChild) {
-        element.removeChild(element.firstChild);
-    }
+     })
 }
+     modalWorkGallery();
+
+              
+// Création des boutons de filtre et implémentation fonctionnement filtrage des works
+ async function categorieFiltre () {
+     const reponse = await fetch ("http://localhost:5678/api/categories");
+    let workCategory = await reponse.json();
+
+        const filterDiv = document.querySelector(".filters");
+        const filterGroup = document.querySelector(".category-filters");        
+        const workGallery = document.querySelector(".gallery");
+
+        // Ajout du bouton "Tous"        
+       const filterAll = document.createElement("button");
+       filterAll.innerText = "Tous";
+
+       filterGroup.appendChild(filterAll);      
+
+//Execution de la fonction avec les paramètres définis que l'on souhaite afficher : conteneur de destination et contenu
+       filterAll.addEventListener(
+        "click",  () => {
+            homeWorkGallery(".gallery", 0);
+        }
+        )        
+        // générer un bouton par catégorie avec leur nom respectif
+         for (let i = 0; i < workCategory.length; i++) {
+      const filterItem = document.createElement("button");
+      filterItem.innerText = workCategory[i].name;  
+
+      filterGroup.appendChild(filterItem);
+      filterItem.addEventListener(
+        "click", () => {
+            //Execution de la fonction avec les paramètres définis que l'on souhaite afficher : conteneur de destination et contenu
+            homeWorkGallery(".gallery", workCategory[i].id);
+        }
+      )
+      }
+    
+         }        
+
+     categorieFiltre();         
+
 
 // ELEMENTS A FAIRE DISPARAITRE POUR PASSER A LA MODALE AJOUT PHOTO
 
@@ -188,13 +187,13 @@ let modalContent = document.querySelector(".modal-content");
 let modalRectangle = document.querySelector(".modal-rectangle");
 let modalForm = document.querySelector(".form-modal");
 let modalValiderButton = document.querySelector(".bouton-modal-valider");
+let modalUnderlineGallery = document.querySelector(".underline-gallery");
 
 ////////////////////////////////////////////////////////////////////////////
 
     modalPhotoButton.addEventListener("click", (event) => {
     
         event.preventDefault();
-
         //ELEMENTS A FAIRE DISPARAITRE
 
         if (modalGalleryTitle) {
@@ -203,8 +202,13 @@ let modalValiderButton = document.querySelector(".bouton-modal-valider");
         if (modalGallery) {
             modalGallery.style.display = "none"
         }
-        if (modalPhotoButton)
+        if (modalPhotoButton) {
             modalPhotoButton.style.display = "none"
+        }
+
+        if  (modalUnderlineGallery) {
+             modalUnderlineGallery.style.visibility = "hidden"
+        }
 
         //ELEMENTS A FAIRE APPARAITRE
 
@@ -265,6 +269,10 @@ modalArrow.addEventListener("click", (event) => {
     }
     if (modalPhotoButton)
         modalPhotoButton.style.display = "unset"
+
+    if  (modalUnderlineGallery) {
+             modalUnderlineGallery.style.visibility = "visible"
+        }
 })
 ////////////////// FORMULAIRE CATEGORIES/////////////////////////////////////////////////
 
@@ -303,21 +311,19 @@ let modalFormTitle = document.getElementById("titre");
 let fileCategory =  document.getElementById("categorie");
 let formModal = document.querySelector(".form-modal");
 const inputField = document.querySelector("input[type=file]");
-const previewImage = document.querySelector(".preview-picture-modale");
+const previewImage = document.querySelector(".picture-modale");
 
 const loadedFile = inputField.files[0];
 let modalFormTitleValue = modalFormTitle.value;
 let fileCategoryValue = Number(fileCategory.value);
 
-function PreviewandUploadProjet () {
+function PreviewWork () {
 
 const loadedFile = inputField.files[0];
 let modalFormTitleValue = modalFormTitle.value;
 let fileCategoryValue = Number(fileCategory.value);
 
 
-// const file = inputFile.files[0];
-// if (file) {
 if (loadedFile) {
     
     const fileReader = new FileReader();  
@@ -330,12 +336,15 @@ if (loadedFile) {
     if ((loadedFile && modalFormTitleValue && fileCategoryValue)) {
     modalValiderButton.style.backgroundColor  = "#1D6154";
     }
+    document.querySelector(".label-modal-button").style.display = "none"
+    document.querySelector(".fileType").style.display = "none"
+    document.querySelector(".picture-modale").classList.add("preview-picture-modale")
 }
 }
 
-inputField.addEventListener("change" , PreviewandUploadProjet);
-modalFormTitle.addEventListener("input", PreviewandUploadProjet);
-fileCategory.addEventListener("change", PreviewandUploadProjet);
+inputField.addEventListener("change" , PreviewWork);
+modalFormTitle.addEventListener("input", PreviewWork);
+fileCategory.addEventListener("change", PreviewWork);
 
 
  if (formModal) {
@@ -351,11 +360,7 @@ let fileCategoryValue = Number(fileCategory.value);
 const formData = new FormData();
 
 formData.append("image", loadedFile);
-
-
 formData.append("title", modalFormTitleValue);
-
-
 formData.append("category", fileCategoryValue);
 
 

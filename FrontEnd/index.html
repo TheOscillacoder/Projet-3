@@ -19,6 +19,7 @@
 <header>
 	<!-- class="edition-mode" a AJOUTER lors du mode user connecté  -->
 	<div class="edition-mode">
+		<img src = "assets/icons/Vector_w.svg">
 		<p class="text-edition">Mode édition</p>
 	</div>
 	<nav class="nav-index">
@@ -50,11 +51,10 @@
 	<section id="portfolio">
 		<div class="projets-titre">
 		<h2>Mes Projets</h2>
-		<div>
 		<a href="#modal1" class="js-modal"> 
 			<img src="assets/icons/Vector.svg" class="logo-edition"> 
 		</a> 
-		</div>
+		<p>modifier</p>
 		</div>
 		<div class="filters">
 			<div class="category-filters">						
@@ -84,7 +84,7 @@
 				<div class="modal-content">
 				<form action="#" method="post" class="form-modal">
 					<div class="modal-rectangle  imageLoader">						
-						<img src="assets/icons/picture-svgrepo-com 1.svg" class="preview-picture-modale" alt="Image preview">
+						<img src="assets/icons/picture-svgrepo-com 1.svg" class="picture-modale" alt="Image preview">
 							<label class="label-modal-button">							
 								<p>+ Ajouter photo</p>								
 							 	<input type="file" accept="image/jpeg, image/png" name="image" id="image">														
@@ -97,13 +97,13 @@
 						<select name="categorie" id="categorie">
 						<!--NOM DES CATEGORIES A REMPLACER PAR LE FETCH DES CATEGORIES-->
 						</select>
-						
+						<div class="underline underline-form"></div>
 					<input type="submit" value="Valider" class="bouton-modal-valider">
+									
 				</form>
 				</div>
-				<div class="underline"></div>
-				<input type="button" value="Ajouter une photo" class="bouton-modal-galerie-photo">
-								
+				<div class="underline underline-gallery"></div>
+				<input type="button" value="Ajouter une photo" class="bouton-modal-galerie-photo">			
 			</div>
 		</aside>
 	</section>		
