@@ -1,133 +1,135 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-	<meta charset="UTF-8">
-	<title>Sophie Bluel - Architecte d'intérieur</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
-	<meta name="description" content="">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer">
-	<link rel="stylesheet" href="assets/style.css">
-	<script src="index.js" defer></script>
-	<script src="login.js" defer></script>
+<meta charset="UTF-8">
+<title>Sophie Bluel - Architecte d'intérieur</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
+<meta name="description" content="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+	integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+	crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="stylesheet" href="assets/style.css">
+<script src="index.js" type ="module" defer></script>
+<script src="login.js" defer></script>
 </head>
 <body>	
 <header>
-	<!-- class="edition-mode" a AJOUTER lors du mode user connecté  -->
-	<div class="edition-mode">
-		<img src = "assets/icons/Vector_w.svg">
-		<p class="text-edition">Mode édition</p>
-	</div>
-	<nav class="nav-index">
-	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
-		<ul>
-			<a href="#gallery">
-				<li><strong>projets</strong></li>
-			</a>
-			<a href="#contact"> <li>contact</li> </a>
-			<a href="login.html"> <li class="login">login</li></a>
-			<li class="logout">logout</li>
-			<!--"login à RETIRER lors du mode user connecté  -->
-			<li><img src="assets/icons/instagram.png" alt="Instagram" class="insta-logo"></li>
-		</ul>
-	</nav>
+<!-- class="edition-mode" a AJOUTER lors du mode user connecté  -->
+<div class="edition-mode">
+	<img src = "assets/icons/Vector_w.svg">
+	<p class="text-edition">Mode édition</p>
+</div>
+<nav class="nav-index">
+<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+	<ul>
+		<a href="#gallery">
+			<li><strong>projets</strong></li>
+		</a>
+		<a href="#contact"> <li>contact</li> </a>
+		<a href="login.html"> <li class="login">login</li></a>
+		<li class="logout">logout</li>
+		<!--"login à RETIRER lors du mode user connecté  -->
+		<li><img src="assets/icons/instagram.png" alt="Instagram" class="insta-logo"></li>
+	</ul>
+</nav>
 </header>
 <main>
-	<section id="introduction">
-		<figure>
-			<img src="assets/images/sophie-bluel.png" alt="portrait sophie bluel">
-		</figure>
-		<article>
-			<h2>Designer d'espace</h2>
-			<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
-			<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
-			<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
-		</article>
-	</section>
-	<section id="portfolio">
-		<div class="projets-titre">
-		<h2>Mes Projets</h2>
+<section id="introduction">
+	<figure>
+		<img src="assets/images/sophie-bluel.png" alt="portrait sophie bluel">
+	</figure>
+	<article>
+		<h2>Designer d'espace</h2>
+		<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.</p>
+		<p>Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.</p>
+		<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
+	</article>
+</section>
+<section id="portfolio">
+	<div class="projets-titre">
+	<h2>Mes Projets</h2>
+	<div class="modal-link">
 		<a href="#modal1" class="js-modal"> 
 			<img src="assets/icons/Vector.svg" class="logo-edition"> 
 		</a> 
-		<p>modifier</p>
-		</div>
-		<div class="filters">
-			<div class="category-filters">						
-		<!--généré dynamiquement en JS-->
-			</div>		
-		</div> 
-			<div id="gallery" class="gallery">
-		<!--généré dynamiquement en JS-->	
-			</div>		
-		<aside id="modal1" class="modal" aria-hidden="true" role="dialog" style="display: none;">
-			<div class="modal-wrapper js-modal js-modal-stop">
-				<div class="modal-top-logo">
-					<img src="assets/icons/arrow-left.svg" class="modal-arrow">
-						<img src="assets/icons/xmark.svg" alt="fermer la modale" class="js-modal-close">
-				</div>
-				<!--A MASQUER DANS LA MODALE VERSION AJOUT PHOTO!-->
-				<!--modale version Galerie-->
-				<p class="modal-title-gallery">Galerie photo</p>
-				<!---AJOUT DIV JS pour conteneur galerie-->
-				<div class="modal-gallery">
-				<!-- généré dynamiquement en JS-->			
-				</div>
-
-				<!--modale version Ajout Photo-->
-				<!--A MASQUER DANS LA MODALE VERSION GALERIE!-->
-				<p class="modal-title-photos">Ajout photo</p>				
-				<div class="modal-content">
-				<form action="#" method="post" class="form-modal">
-					<div class="modal-rectangle  imageLoader">						
-						<img src="assets/icons/picture-svgrepo-com 1.svg" class="picture-modale" alt="Image preview">
-							<label class="label-modal-button">							
-								<p>+ Ajouter photo</p>								
-							 	<input type="file" accept="image/jpeg, image/png" name="image" id="image">														
-							</label>	
-						<p class= "fileType">jpg, png : 4mo max</p>
-					</div>						
-					<label for="titre">Titre</label>
-						<input type="text" name="titre" id="titre">
-					<label for="categorie">Catégorie</label>
-						<select name="categorie" id="categorie">
-						<!--NOM DES CATEGORIES A REMPLACER PAR LE FETCH DES CATEGORIES-->
-						</select>
-						<div class="underline underline-form"></div>
-					<input type="submit" value="Valider" class="bouton-modal-valider">
-									
-				</form>
-				</div>
-				<div class="underline underline-gallery"></div>
-				<input type="button" value="Ajouter une photo" class="bouton-modal-galerie-photo">			
+	<p>modifier</p>
+	</div>
+	</div>
+	<div class="filters">
+		<div class="category-filters">						
+	<!--généré dynamiquement en JS-->
+		</div>		
+	</div> 
+		<div id="gallery" class="gallery">
+	<!--généré dynamiquement en JS-->	
+		</div>		
+	<aside id="modal1" class="modal" aria-hidden="true" role="dialog" style="display: none;">
+		<div class="modal-wrapper js-modal js-modal-stop">
+			<div class="modal-top-logo">
+				<img src="assets/icons/arrow-left.svg" class="modal-arrow">
+					<img src="assets/icons/xmark.svg" alt="fermer la modale" class="js-modal-close">
 			</div>
-		</aside>
-	</section>		
-	<section id="contact">
-		<h2>Contact</h2>
-		<p>Vous avez un projet ? Discutons-en !</p>
-		<form action="#" method="post">
-			<label for="name">Nom</label>
-			<input type="text" name="name" id="name">
-			<label for="email">Email</label>
-			<input type="email" name="email" id="email">
-			<label for="message">Message</label>
-			<textarea name="message" id="message" cols="30" rows="10"></textarea>
-			<input type="submit" value="Envoyer" class="bouton-valider">
-		</form>
-	</section>
+			<!--A MASQUER DANS LA MODALE VERSION AJOUT PHOTO!-->
+			<!--modale version Galerie-->
+			<p class="modal-title-gallery">Galerie photo</p>
+			<!---AJOUT DIV JS pour conteneur galerie-->
+			<div class="modal-gallery">
+			<!-- généré dynamiquement en JS-->			
+			</div>
+
+			<!--modale version Ajout Photo-->
+			<!--A MASQUER DANS LA MODALE VERSION GALERIE!-->
+			<p class="modal-title-photos">Ajout photo</p>				
+			<div class="modal-content">
+			<form action="#" method="post" class="form-modal">
+				<div class="modal-rectangle  imageLoader">						
+					<img src="assets/icons/picture-svgrepo-com 1.svg" class="picture-modale" alt="Image preview">
+						<label class="label-modal-button">							
+							<p>+ Ajouter photo</p>								
+							<input type="file" accept="image/jpeg, image/png" name="image" id="image">														
+						</label>	
+					<p class= "fileType">jpg, png : 4mo max</p>
+				</div>						
+				<label for="titre">Titre</label>
+					<input type="text" name="titre" id="titre">
+				<label for="categorie">Catégorie</label>
+					<select name="categorie" id="categorie">
+					<!--NOM DES CATEGORIES A REMPLACER PAR LE FETCH DES CATEGORIES-->
+					</select>
+					<div class="underline underline-form"></div>
+				<input type="submit" value="Valider" class="bouton-modal-valider">
+								
+			</form>
+			</div>
+			<div class="underline underline-gallery"></div>
+			<input type="button" value="Ajouter une photo" class="bouton-modal-galerie-photo">			
+		</div>
+	</aside>
+</section>		
+<section id="contact">
+	<h2>Contact</h2>
+	<p>Vous avez un projet ? Discutons-en !</p>
+	<form action="#" method="post">
+		<label for="name">Nom</label>
+		<input type="text" name="name" id="name">
+		<label for="email">Email</label>
+		<input type="email" name="email" id="email">
+		<label for="message">Message</label>
+		<textarea name="message" id="message" cols="30" rows="10"></textarea>
+		<input type="submit" value="Envoyer" class="bouton-valider">
+	</form>
+</section>
 </main>
 <footer>
-	<nav>
-		<ul>
-			<li>Mentions Légales</li>
-		</ul>
-	</nav>
+<nav>
+	<ul>
+		<li>Mentions Légales</li>
+	</ul>
+</nav>
 </footer>
-<script src="modal.js"></script>
+<!-- <script src="modal.js"></script> -->
 </body>
 </html>
