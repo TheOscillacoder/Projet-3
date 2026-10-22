@@ -10,7 +10,7 @@ JavaScript, HTML, CSS, API REST (Node.js)
 
 1. Démarrez le back-end (API) :
 
-        cd Backend
+        cd .\Backend\
         npm install
         npm start
 
